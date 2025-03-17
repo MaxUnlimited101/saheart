@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
 
-//export const serverUrl = 'https://saheart-server-img-374117605936.europe-west3.run.app';
-export const serverUrl = 'http://10.0.2.2:8080';
-//export const serverUrl = 'http://localhost:8080';
+export const serverUrl = 'https://saheart-server-img-374117605936.europe-west3.run.app';
+//export const serverUrl = 'http://10.0.2.2:8080';
 
 const l_tr = {
   "eng": {

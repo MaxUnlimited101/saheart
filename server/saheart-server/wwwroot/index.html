@@ -1,5 +1,4 @@
-﻿<!-- TODO: add ai pred support + fix opacity -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,7 +33,7 @@
             color: #a0a0a0;
         }
 
-        .contentContainerStyle, select {
+        .contentContainerStyle, select, button {
             width: 100%;
             padding: 10px;
             font-size: 1em;
@@ -44,6 +43,7 @@
             border: 1px solid #555;
             border-radius: 5px;
             box-sizing: border-box;
+            cursor: pointer; /* Add cursor pointer for buttons */
         }
 
         #horoscopeText {
@@ -63,40 +63,42 @@
     </style>
 </head>
 <body id="backgroundImageDiv">
-    <noscript>Please enable Javascript for this site to work properly.</noscript>
-    <script async src="scripts/index.js"></script>
+<noscript>Please enable Javascript for this site to work properly.</noscript>
+<script async src="scripts/index.js"></script>
+
+<div class="container">
+    <p class="label">Select your preferred language: </p>
+    <select class="contentContainerStyle" id="languageSelect">
+        <option value="">--Language / Мова / Язык--</option>
+        <option value="eng">English</option>
+        <option value="ukr">Українська</option>
+        <option value="rus">Русский</option>
+    </select>
+
+    <p class="label">Select Your Zodiac sign</p>
+    <select class="contentContainerStyle" id="signSelect">
+        <option value="">--Sign / Знак / Знак--</option>
+        <option value="aries">Aries - Овен - Овен</option>
+        <option value="taurus">Taurus - Телець - Телец</option>
+        <option value="gemini">Gemini - Близнюки - Близнецы</option>
+        <option value="cancer">Cancer - Рак - Рак</option>
+        <option value="leo">Leo - Лев - Лев</option>
+        <option value="virgo">Virgo - Діва - Дева</option>
+        <option value="libra">Libra - Ваги - Весы</option>
+        <option value="scorpio">Scorpio - Скорпіон - Скорпион</option>
+        <option value="sagittarius">Sagittarius - Стрілець - Стрелец</option>
+        <option value="capricorn">Capricorn - Козеріг - Козерог</option>
+        <option value="aquarius">Aquarius - Водолій - Водолей</option>
+        <option value="pisces">Pisces - Риби - Рыбы</option>
+    </select>
+
+    <button id="fetchPredictionButton">Fetch Prediction</button>
+    <button id="fetchAiPredictionButton">Fetch AI Prediction</button>
 
     <div class="container">
-        <p class="label">Select your preferred language: </p>
-        <select class="contentContainerStyle" id="languageSelect">
-            <option value="">--Language / Мова / Язык--</option>
-            <option value="eng">English</option>
-            <option value="ukr">Українська</option>
-            <option value="rus">Русский</option>
-        </select>
-
-        <p class="label">Select Your Zodiac sign</p>
-        <select class="contentContainerStyle" id="signSelect">
-            <option value="">--Sign / Знак / Знак--</option>
-            <option value="aries">Aries - Овен - Овен</option>
-            <option value="taurus">Taurus - Телець - Телец</option>
-            <option value="gemini">Gemini - Близнюки - Близнецы</option>
-            <option value="cancer">Cancer - Рак - Рак</option>
-            <option value="leo">Leo - Лев - Лев</option>
-            <option value="virgo">Virgo - Діва - Дева</option>
-            <option value="libra">Libra - Ваги - Весы</option>
-            <option value="scorpio">Scorpio - Скорпіон - Скорпион</option>
-            <option value="sagittarius">Sagittarius - Стрілець - Стрелец</option>
-            <option value="capricorn">Capricorn - Козеріг - Козерог</option>
-            <option value="aquarius">Aquarius - Водолій - Водолей</option>
-            <option value="pisces">Pisces - Риби - Рыбы</option>
-        </select>
-
-        <div class="container">
-            <p class="label">Prediction / Передбачення / Предсказание: </p>
-            <p id="horoscopeText" class="horoscope"></p>
-        </div>
+        <p class="label">Prediction / Передбачення / Предсказание: </p>
+        <p id="horoscopeText" class="horoscope"></p>
     </div>
+</div>
 </body>
 </html>
-

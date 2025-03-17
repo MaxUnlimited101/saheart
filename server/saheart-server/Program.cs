@@ -16,7 +16,6 @@ namespace saheart_server
             
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add CORS services
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -92,15 +91,6 @@ namespace saheart_server
                     }
 
                     Console.WriteLine($"request sign: [{request.Sign}]; request.lang: [{request.Language}]");
-                    // using (StreamReader reader = new StreamReader(context.Request.Body))
-                    // {
-                    //     string json = await reader.ReadToEndAsync();
-                    //     Console.WriteLine($"json string: [{json}]");
-                    //
-                    //     request = Newtonsoft.Json.JsonConvert.DeserializeObject<AiPredictionRequest>(json);
-                    //
-                    //     Console.WriteLine($"request sign: {request.Sign}; request.lang: {request.Language}");
-                    // }
                 }
                 catch (Exception e)
                 {
@@ -109,7 +99,6 @@ namespace saheart_server
                 }
 
                 context.Response.ContentType = "application/json";
-                //return Results.Ok(await AiPrediction(requestDate, request));
                 return await AiPrediction(requestDate, request);
             });
             
@@ -118,7 +107,6 @@ namespace saheart_server
         
         private static async Task<IResult> AiPrediction(DateTime requestDate, AiPredictionRequest request)
         {
-            
             var resp = HoroscopeGenerator.Instance
                 .GenerateAiPrediction(request.Sign, requestDate, request.Language);
 
