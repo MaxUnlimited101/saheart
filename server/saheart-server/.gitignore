@@ -9,6 +9,8 @@ horoscope_text_full_ENG.txt
 horoscopeStateMap.json
 wwwroot/images/*
 !wwwroot/images/_.txt
+env/*
+!env/_.txt
 
 # User-specific files
 *.rsuser

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
+const HoroscopeForm = ({ setSign, setLang, sign, lang, translations }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Select your preferred language:</Text>
@@ -11,7 +11,7 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
         style={Platform.select({ android: styles.pickerMobile, ios: styles.pickerMobile, default: styles.picker })}
         onValueChange={(itemValue) => { setLang(itemValue); }}
       >
-        <Picker.Item label="--Language / Мова / Язык--" value="" />
+        <Picker.Item label="----" value="" />
         <Picker.Item label="English" value="eng" />
         <Picker.Item label="Українська" value="ukr" />
         <Picker.Item label="Русский" value="rus" />
@@ -23,19 +23,19 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
         style={Platform.select({ android: styles.pickerMobile, ios: styles.pickerMobile, default: styles.picker })}
         onValueChange={(itemValue) => { setSign(itemValue); }}
       >
-        <Picker.Item label="--Sign / Знак / Знак--" value="" />
-        <Picker.Item label="Aries - Овен - Овен" value="aries" />
-        <Picker.Item label="Taurus - Телець - Телец" value="taurus" />
-        <Picker.Item label="Gemini - Близнюки - Близнецы" value="gemini" />
-        <Picker.Item label="Cancer - Рак - Рак" value="cancer" />
-        <Picker.Item label="Leo - Лев - Лев" value="leo" />
-        <Picker.Item label="Virgo - Діва - Дева" value="virgo" />
-        <Picker.Item label="Libra - Ваги - Весы" value="libra" />
-        <Picker.Item label="Scorpio - Скорпіон - Скорпион" value="scorpio" />
-        <Picker.Item label="Sagittarius - Стрілець - Стрелец" value="sagittarius" />
-        <Picker.Item label="Capricorn - Козеріг - Козерог" value="capricorn" />
-        <Picker.Item label="Aquarius - Водолій - Водолей" value="aquarius" />
-        <Picker.Item label="Pisces - Риби - Рыбы" value="pisces" />
+        <Picker.Item label={'----'} value="" />
+        <Picker.Item label={translations[lang]["aries"]} value={"aries"} />
+        <Picker.Item label={translations[lang]["taurus"]} value={"taurus"} />
+        <Picker.Item label={translations[lang]["gemini"]} value={"gemini"} />
+        <Picker.Item label={translations[lang]["cancer"]} value={"cancer"} />
+        <Picker.Item label={translations[lang]["leo"]} value={"leo"} />
+        <Picker.Item label={translations[lang]["virgo"]} value={"virgo"} />
+        <Picker.Item label={translations[lang]["libra"]} value={"libra"} />
+        <Picker.Item label={translations[lang]["scorpio"]} value={"scorpio"} />
+        <Picker.Item label={translations[lang]["sagittarius"]} value={"sagittarius"} />
+        <Picker.Item label={translations[lang]["capricorn"]} value={"capricorn"} />
+        <Picker.Item label={translations[lang]["aquarius"]} value={"aquarius"} />
+        <Picker.Item label={translations[lang]["pisces"]} value={"pisces"} />
       </Picker>
     </View>
   );
@@ -43,7 +43,7 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    margin: 15,
   },
   label: {
     fontSize: 18,

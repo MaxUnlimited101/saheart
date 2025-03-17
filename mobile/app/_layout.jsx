@@ -1,12 +1,60 @@
 import React, { useState } from 'react';
-import { ScrollView, SafeAreaView, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import HoroscopeForm from './HoroscopeForm';
 import HoroscopeDisplay, { serverUrl } from './HoroscopeDisplay';
 import { ImageBackground } from 'react-native';
 
+export const translations = {
+  "eng": {
+    "sign": "Sign",
+    "aries": "Aries",
+    "taurus": "Taurus",
+    "gemini": "Gemini",
+    "cancer": "Cancer",
+    "leo": "Leo",
+    "virgo": "Virgo",
+    "libra": "Libra",
+    "scorpio": "Scorpio",
+    "sagittarius": "Sagittarius",
+    "capricorn": "Capricorn",
+    "aquarius": "Aquarius",
+    "pisces": "Pisces"
+  },
+  "ukr": {
+    "sign": "Знак",
+    "aries": "Овен",
+    "taurus": "Телець",
+    "gemini": "Близнюки",
+    "cancer": "Рак",
+    "leo": "Лев",
+    "virgo": "Діва",
+    "libra": "Терези",
+    "scorpio": "Скорпіон",
+    "sagittarius": "Стрілець",
+    "capricorn": "Козеріг",
+    "aquarius": "Водолій",
+    "pisces": "Риби"
+  },
+  "rus": {
+    "sign": "Знак",
+    "aries": "Овен",
+    "taurus": "Телец",
+    "gemini": "Близнецы",
+    "cancer": "Рак",
+    "leo": "Лев",
+    "virgo": "Дева",
+    "libra": "Весы",
+    "scorpio": "Скорпион",
+    "sagittarius": "Стрелец",
+    "capricorn": "Козерог",
+    "aquarius": "Водолей",
+    "pisces": "Рыбы"
+  }
+};
+
 const App = () => {
   const [selectedSign, setSelectedSign] = useState('');
-  const [selectedLang, setSelectedLang] = useState('');
+  const [selectedLang, setSelectedLang] = useState('eng');
   const [backgroundUrl, setBackgroundUrl] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -27,13 +75,16 @@ const App = () => {
 
   let disp = <></>;
   if (selectedSign && selectedLang) {
-    disp = <HoroscopeDisplay sign={selectedSign} lang={selectedLang} setBackgroundImageUrl={setBackgroundUrl} />;
+    disp = <HoroscopeDisplay sign={selectedSign} lang={selectedLang}
+      setBackgroundImageUrl={setBackgroundUrl} translations={translations} />;
   }
 
   return (
+
     <ImageBackground source={{ uri: `${serverUrl}${backgroundUrl}` }} style={styles.backgroundImage}>
       <View style={styles.container}>
-        <HoroscopeForm sign={selectedSign} lang={selectedLang} setLang={setSelectedLang} setSign={setSelectedSign} />
+        <HoroscopeForm sign={selectedSign} lang={selectedLang} setLang={setSelectedLang}
+          setSign={setSelectedSign} translations={translations} />
       </View>
       <ScrollView style={styles.containerVisualStyle} contentContainerStyle={styles.contentContainerStyle}
         persistentScrollbar={true} /*<--only for android*/ >
@@ -65,7 +116,6 @@ const styles = StyleSheet.create({
   },
   containerVisualStyle: {
     flex: 1,
-    padding: 5,
   },
   title: {
     fontSize: 24,

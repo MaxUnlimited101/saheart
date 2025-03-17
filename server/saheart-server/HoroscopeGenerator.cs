@@ -2,11 +2,17 @@
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using saheart_server.Utils;
 
 namespace saheart_server
 {
     public class HoroscopeGenerator
     {
+        private static readonly Lazy<HoroscopeGenerator> instance =
+            new Lazy<HoroscopeGenerator>(() => new HoroscopeGenerator()); 
+        
+        
+        
         private static readonly string volumePath = "/app/data"; // Path where the volume is mounted
         private static readonly string pathToStateFile = "/app/data/horoscopeStateMap.json";
         private static readonly string pathToAllHoroscopesFolder = "./res/";
@@ -22,7 +28,9 @@ namespace saheart_server
         /// </summary>
         private Dictionary<string, Dictionary<string, List<string>>> horoscopeStateMap;
         private DateTime horoscopeCreationDate;
-
+        
+        public static HoroscopeGenerator Instance => instance.Value;
+        
         static HoroscopeGenerator()
         {
             if (!Directory.Exists(pathToAllHoroscopesFolder))
@@ -33,7 +41,7 @@ namespace saheart_server
             allLanguages = Directory.EnumerateFiles(pathToAllHoroscopesFolder).Select(s => Path.GetFileName(s)).ToList();
         }
 
-        public HoroscopeGenerator() 
+        private HoroscopeGenerator() 
         {
             // Ensure the directory exists
             if (!Directory.Exists(volumePath))
@@ -46,7 +54,7 @@ namespace saheart_server
             foreach (string sign in zodiacSigns)
             {
                 List<string> t = Directory.EnumerateFiles(pathToAllImages).ToList();
-                t.Remove(Path.Combine(pathToAllImages, "_.txt")); // not an image, but needed for github repository
+                t.Remove(Path.Combine(pathToAllImages, "_.txt")); // not an image
                 allImagePathsMap[sign] = t;
                 allImagePathsMap[sign].Shuffle();
             }
@@ -173,6 +181,36 @@ namespace saheart_server
                     }
                 }
             }
+        }
+        
+        public HoroscopeResponse GenerateAiPrediction(string zodiacSign, DateTime requestDate, string lang)
+        {
+            HoroscopeResponse response = new();
+            response.Text = horoscopeStateMap[lang][zodiacSign][(((int)Math.Abs((requestDate - horoscopeCreationDate).TotalDays)) % horoscopeStateMap[lang][zodiacSign].Count) / daysTimeout];
+            
+            string rawPath = allImagePathsMap[zodiacSign][(((int)Math.Abs((requestDate - horoscopeCreationDate).TotalDays)) % allImagePathsMap[zodiacSign].Count)];
+            rawPath = rawPath.Substring(rawPath.IndexOf('/'));
+            response.PathToImage = rawPath.Replace('\\', '/');
+
+            string messageToAi = $"Rephrase this and correct any language errors: '{response.Text}'. Keep same positive outlook, tell me just the new prediction. " +
+                                 $"Write prediction in this language: {lang}; keep it under 80 words. Output just text, do NOT USE NEWLINES or anything similar.";
+            string aiPredictionText = OpenRouterRequest.MakeRequest(messageToAi).GetAwaiter().GetResult();
+            
+            // trim the \n
+            aiPredictionText = aiPredictionText.StartsWith("\n") ?
+                aiPredictionText.Substring(1, aiPredictionText.Length - 2) :
+                aiPredictionText;
+            
+            if (aiPredictionText == string.Empty)
+            {
+                response.Text = "The AI prediction text is empty. Please try again.";
+            }
+            else
+            {
+                response.Text = aiPredictionText;
+            }
+            
+            return response;
         }
     }
 }
