@@ -1,0 +1,77 @@
+export const sign_tr = {
+  eng: {
+    sign: "Sign",
+    aries: "Aries",
+    taurus: "Taurus",
+    gemini: "Gemini",
+    cancer: "Cancer",
+    leo: "Leo",
+    virgo: "Virgo",
+    libra: "Libra",
+    scorpio: "Scorpio",
+    sagittarius: "Sagittarius",
+    capricorn: "Capricorn",
+    aquarius: "Aquarius",
+    pisces: "Pisces",
+  },
+  ukr: {
+    sign: "Знак",
+    aries: "Овен",
+    taurus: "Телець",
+    gemini: "Близнюки",
+    cancer: "Рак",
+    leo: "Лев",
+    virgo: "Діва",
+    libra: "Терези",
+    scorpio: "Скорпіон",
+    sagittarius: "Стрілець",
+    capricorn: "Козеріг",
+    aquarius: "Водолій",
+    pisces: "Риби",
+  },
+  rus: {
+    sign: "Знак",
+    aries: "Овен",
+    taurus: "Телец",
+    gemini: "Близнецы",
+    cancer: "Рак",
+    leo: "Лев",
+    virgo: "Дева",
+    libra: "Весы",
+    scorpio: "Скорпион",
+    sagittarius: "Стрелец",
+    capricorn: "Козерог",
+    aquarius: "Водолей",
+    pisces: "Рыбы",
+  },
+};
+
+export const ui_tr = {
+  eng: {
+    btn_fetch_ai: "Get AI predicted horoscope",
+    prediction: "Prediction",
+    error_fetching:
+      "Failed to fetch horoscope (error fetching). You should try updating this app!",
+    btn_fetch: "Get horoscope",
+    label_select_lang: "Select your preferred language:",
+    label_select_sign: "Select your sign:",
+  },
+  ukr: {
+    btn_fetch_ai: "Отримати передбачення від ШІ",
+    prediction: "Передбачення",
+    error_fetching:
+      "Не вдалося отримати гороскоп (помилка отримання). Спробуйте оновити цю програму!",
+    btn_fetch: "Отримати гороскоп",
+    label_select_lang: "Виберіть мову:",
+    label_select_sign: "Виберіть свій знак зодіаку:",
+  },
+  rus: {
+    btn_fetch_ai: "Получить предсказание от ИИ",
+    prediction: "Предсказание",
+    error_fetching:
+      "Не удалось получить гороскоп (ошибка получения). Вам следует попробовать обновить это приложение!",
+    btn_fetch: "Получить предсказание",
+    label_select_lang: "Выберите язык:",
+    label_select_sign: "Выберите свой знак зодиака:",
+  },
+};

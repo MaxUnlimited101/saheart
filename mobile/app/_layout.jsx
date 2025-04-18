@@ -3,54 +3,7 @@ import { ScrollView, StyleSheet, Text, View, ActivityIndicator } from 'react-nat
 import HoroscopeForm from './HoroscopeForm';
 import HoroscopeDisplay, { serverUrl } from './HoroscopeDisplay';
 import { ImageBackground } from 'react-native';
-
-export const translations = {
-  "eng": {
-    "sign": "Sign",
-    "aries": "Aries",
-    "taurus": "Taurus",
-    "gemini": "Gemini",
-    "cancer": "Cancer",
-    "leo": "Leo",
-    "virgo": "Virgo",
-    "libra": "Libra",
-    "scorpio": "Scorpio",
-    "sagittarius": "Sagittarius",
-    "capricorn": "Capricorn",
-    "aquarius": "Aquarius",
-    "pisces": "Pisces"
-  },
-  "ukr": {
-    "sign": "Знак",
-    "aries": "Овен",
-    "taurus": "Телець",
-    "gemini": "Близнюки",
-    "cancer": "Рак",
-    "leo": "Лев",
-    "virgo": "Діва",
-    "libra": "Терези",
-    "scorpio": "Скорпіон",
-    "sagittarius": "Стрілець",
-    "capricorn": "Козеріг",
-    "aquarius": "Водолій",
-    "pisces": "Риби"
-  },
-  "rus": {
-    "sign": "Знак",
-    "aries": "Овен",
-    "taurus": "Телец",
-    "gemini": "Близнецы",
-    "cancer": "Рак",
-    "leo": "Лев",
-    "virgo": "Дева",
-    "libra": "Весы",
-    "scorpio": "Скорпион",
-    "sagittarius": "Стрелец",
-    "capricorn": "Козерог",
-    "aquarius": "Водолей",
-    "pisces": "Рыбы"
-  }
-};
+import { ui_tr, sign_tr } from './utils/translations';
 
 const App = () => {
   const [selectedSign, setSelectedSign] = useState('');
@@ -76,7 +29,7 @@ const App = () => {
   let disp = <></>;
   if (selectedSign && selectedLang) {
     disp = <HoroscopeDisplay sign={selectedSign} lang={selectedLang}
-      setBackgroundImageUrl={setBackgroundUrl} translations={translations} />;
+      setBackgroundImageUrl={setBackgroundUrl} />;
   }
 
   return (
@@ -84,7 +37,7 @@ const App = () => {
     <ImageBackground source={{ uri: `${serverUrl}${backgroundUrl}` }} style={styles.backgroundImage}>
       <View style={styles.container}>
         <HoroscopeForm sign={selectedSign} lang={selectedLang} setLang={setSelectedLang}
-          setSign={setSelectedSign} translations={translations} />
+          setSign={setSelectedSign} />
       </View>
       <ScrollView style={styles.containerVisualStyle} contentContainerStyle={styles.contentContainerStyle}
         persistentScrollbar={true} /*<--only for android*/ >

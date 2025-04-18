@@ -1,30 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import { ui_tr } from './utils/translations';
 
 export const serverUrl = 'https://saheart-server-img-374117605936.europe-west3.run.app';
 //export const serverUrl = 'http://10.0.2.2:8080';
-
-const l_tr = {
-  "eng": {
-    "btn_fetch_ai": "Get AI predicted horoscope",
-    "prediction": "Prediction",
-    "error_fetching": "Failed to fetch horoscope (error fetching). You should try updating this app!",
-    "btn_fetch": "Get horoscope",
-  },
-  "ukr": {
-    "btn_fetch_ai": "Отримати передбачення від ШІ",
-    "prediction": "Передбачення",
-    "error_fetching": "Не вдалося отримати гороскоп (помилка отримання). Спробуйте оновити цю програму!",
-    "btn_fetch": "Отримати гороскоп",
-  },
-  "rus": {
-    "btn_fetch_ai": "Получить предсказание от ИИ",
-    "prediction": "Предсказание",
-    "error_fetching": "Не удалось получить гороскоп (ошибка получения). Вам следует попробовать обновить это приложение!",
-    "btn_fetch": "Получить предсказание",
-  }
-};
-
 
 const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) => {
   const [horoscope, setHoroscope] = useState('');
@@ -41,6 +20,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
       '-' + String(today.getDate()).padStart(2, '0');
 
     try {
+      console.log(`GET ${serverUrl}/${lang}/${sign}?date=${currentDate}`);
       const response = await fetch(`${serverUrl}/${lang}/${sign}?date=${currentDate}`);
       const data = await response.json();
 
@@ -51,7 +31,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
         setError(data.message || 'Failed to fetch horoscope');
       }
     } catch (err) {
-      setError(`${l_tr[lang]["error_fetching"]} [${err}]`);
+      setError(`${ui_tr[lang]["error_fetching"]} [${err}]`);
     } finally {
       setLoading(false);
     }
@@ -75,6 +55,8 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
     console.log(bodyData);
 
     try {
+      console.log(`POST ${serverUrl}/ai_pred?date=${currentDate}`);
+      console.log(`body: [${bodyData}]`);
       const response = await fetch(
         `${serverUrl}/ai_pred?date=${currentDate}`,
         {
@@ -96,7 +78,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
         setError(data.message || 'Failed to fetch horoscope');
       }
     } catch (err) {
-      setError(l_tr[lang]["error_fetching"] + ` [${err}]`);
+      setError(ui_tr[lang]["error_fetching"] + ` [${err}]`);
     } finally {
       setLoading(false);
     }
@@ -121,10 +103,10 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
       <View style={styles.container}>
         <View style={styles.verticalStack}>
           <View style={styles.container}>
-            <Button title={`${l_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
+            <Button title={`${ui_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
           </View>
           <View style={styles.container}>
-            <Button title={`${l_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
+            <Button title={`${ui_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
           </View>
         </View>
         <Text style={styles.error}>{error}</Text>
@@ -136,15 +118,15 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
     <View style={styles.container}>
       <View style={styles.verticalStack}>
         <View style={styles.container}>
-          <Button title={`${l_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
+          <Button title={`${ui_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
         </View>
         <View style={styles.container}>
-          <Button title={`${l_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
+          <Button title={`${ui_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
         </View>
       </View>
       {horoscope ? (
         <View style={styles.container}>
-          <Text style={styles.header}>{`${l_tr[lang]["prediction"]}: `}</Text>
+          <Text style={styles.header}>{`${ui_tr[lang]["prediction"]}: `}</Text>
           <Text style={styles.horoscope}>{horoscope}</Text>
         </View>
       ) : null}

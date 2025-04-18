@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { ui_tr, sign_tr } from './utils/translations';
 
-const HoroscopeForm = ({ setSign, setLang, sign, lang, translations }) => {
+const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Select your preferred language:</Text>
+      <Text style={styles.label}>{ui_tr[lang]["label_select_lang"]}</Text>
       <Picker
         selectedValue={lang}
         style={Platform.select({ android: styles.pickerMobile, ios: styles.pickerMobile, default: styles.picker })}
@@ -17,25 +18,25 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang, translations }) => {
         <Picker.Item label="Русский" value="rus" />
       </Picker>
 
-      <Text style={styles.label}>Select Your Zodiac Sign:</Text>
+      <Text style={styles.label}>{ui_tr[lang]["label_select_sign"]}</Text>
       <Picker
         selectedValue={sign}
         style={Platform.select({ android: styles.pickerMobile, ios: styles.pickerMobile, default: styles.picker })}
         onValueChange={(itemValue) => { setSign(itemValue); }}
       >
         <Picker.Item label={'----'} value="" />
-        <Picker.Item label={translations[lang]["aries"]} value={"aries"} />
-        <Picker.Item label={translations[lang]["taurus"]} value={"taurus"} />
-        <Picker.Item label={translations[lang]["gemini"]} value={"gemini"} />
-        <Picker.Item label={translations[lang]["cancer"]} value={"cancer"} />
-        <Picker.Item label={translations[lang]["leo"]} value={"leo"} />
-        <Picker.Item label={translations[lang]["virgo"]} value={"virgo"} />
-        <Picker.Item label={translations[lang]["libra"]} value={"libra"} />
-        <Picker.Item label={translations[lang]["scorpio"]} value={"scorpio"} />
-        <Picker.Item label={translations[lang]["sagittarius"]} value={"sagittarius"} />
-        <Picker.Item label={translations[lang]["capricorn"]} value={"capricorn"} />
-        <Picker.Item label={translations[lang]["aquarius"]} value={"aquarius"} />
-        <Picker.Item label={translations[lang]["pisces"]} value={"pisces"} />
+        <Picker.Item label={sign_tr[lang]["aries"]} value={"aries"} />
+        <Picker.Item label={sign_tr[lang]["taurus"]} value={"taurus"} />
+        <Picker.Item label={sign_tr[lang]["gemini"]} value={"gemini"} />
+        <Picker.Item label={sign_tr[lang]["cancer"]} value={"cancer"} />
+        <Picker.Item label={sign_tr[lang]["leo"]} value={"leo"} />
+        <Picker.Item label={sign_tr[lang]["virgo"]} value={"virgo"} />
+        <Picker.Item label={sign_tr[lang]["libra"]} value={"libra"} />
+        <Picker.Item label={sign_tr[lang]["scorpio"]} value={"scorpio"} />
+        <Picker.Item label={sign_tr[lang]["sagittarius"]} value={"sagittarius"} />
+        <Picker.Item label={sign_tr[lang]["capricorn"]} value={"capricorn"} />
+        <Picker.Item label={sign_tr[lang]["aquarius"]} value={"aquarius"} />
+        <Picker.Item label={sign_tr[lang]["pisces"]} value={"pisces"} />
       </Picker>
     </View>
   );

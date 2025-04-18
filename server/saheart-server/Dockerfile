@@ -32,4 +32,7 @@ COPY --from=build /app/publish .
 # Copy the res folder
 COPY --from=build /src/res ./res
 
+# Copy the env folder
+COPY --from=build /src/env ./env
+
 ENTRYPOINT ["dotnet", "saheart-server.dll"]
