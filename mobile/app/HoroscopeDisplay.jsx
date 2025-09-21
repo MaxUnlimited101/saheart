@@ -115,17 +115,17 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.mainContainer}>
       <View style={styles.verticalStack}>
-        <View style={styles.container}>
+        <View style={styles.buttonContainer}>
           <Button title={`${ui_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
         </View>
-        <View style={styles.container}>
+        <View style={styles.buttonContainer}>
           <Button title={`${ui_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
         </View>
       </View>
       {horoscope ? (
-        <View style={styles.container}>
+        <View style={styles.textContainer}>
           <Text style={styles.header}>{`${ui_tr[lang]["prediction"]}: `}</Text>
           <Text style={styles.horoscope}>{horoscope}</Text>
         </View>
@@ -136,11 +136,33 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
 
 const styles = StyleSheet.create({
   verticalStack: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingTop: 5,
+    paddingBottom: 5,
     flexDirection: 'column',
+    maxWidth: '80%',
+    alignSelf: 'center',
+    alignItems: 'center',
+  },
+  mainContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    paddingVertical: 3,
+    paddingHorizontal: 10,
+    width: '100%',
+    alignItems: 'center',
+  },
+  textContainer: {
+    padding: 10,
+    maxWidth: '100%',
+    alignSelf: 'center',
   },
   container: {
     padding: 10,
+    maxWidth: '90%',
+    alignSelf: 'center',
   },
   header: {
     fontSize: 22,
