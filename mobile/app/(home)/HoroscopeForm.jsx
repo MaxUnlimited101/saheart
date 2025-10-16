@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { ui_tr, sign_tr } from './utils/translations';
+import { ui_tr, sign_tr } from '../utils/translations';
 
 const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
   return (

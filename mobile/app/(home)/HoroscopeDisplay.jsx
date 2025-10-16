@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
-import { ui_tr } from './utils/translations';
+import { ui_tr } from '../utils/translations';
 
 export const serverUrl = 'https://saheart-server-img-374117605936.europe-west3.run.app';
 //export const serverUrl = 'http://10.0.2.2:8080';
@@ -25,7 +25,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
       const data = await response.json();
 
       if (response.ok) {
-        setHoroscope(data.text.replace("eng; ", '`'));
+        setHoroscope(data.text);
         setBackgroundImageUrl(data.pathToImage)
       } else {
         setError(data.message || 'Failed to fetch horoscope');
@@ -72,7 +72,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
 
       console.log(data);
       if (response.ok) {
-        setHoroscope(data.text);
+        setHoroscope(data.text?.replace("eng; ", '') || '');
         setBackgroundImageUrl(data.pathToImage);
       } else {
         setError(data.message || 'Failed to fetch horoscope');
@@ -93,7 +93,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
   if (loading) {
     return (
       <View style={styles.container} >
-        <ActivityIndicator size={"large"} />
+        <ActivityIndicator size={"large"} color={"white"}/>
       </View>
     );
   }

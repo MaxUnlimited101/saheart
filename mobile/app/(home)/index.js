@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet, Text, View, ActivityIndicator } from 'react-nat
 import HoroscopeForm from './HoroscopeForm';
 import HoroscopeDisplay, { serverUrl } from './HoroscopeDisplay';
 import { ImageBackground } from 'react-native';
-import { ui_tr, sign_tr } from './utils/translations';
+import { ui_tr, sign_tr } from '../utils/translations';
+import { Stack } from 'expo-router';
 
 const App = () => {
   const [selectedSign, setSelectedSign] = useState('');
