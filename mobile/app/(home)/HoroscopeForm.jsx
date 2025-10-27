@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { ui_tr, sign_tr } from '../utils/translations';
 
@@ -60,9 +59,11 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 20,
     backgroundColor: '#ffffff',
+    color: '#000000',
   },
   pickerMobile: {
     backgroundColor: '#ffffff',
+    color: '#000000',
     marginBottom: 20,
   }
 });

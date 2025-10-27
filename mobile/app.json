@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
+      },
+      "splash": {
+        "image": "./assets/images/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#000000"
       },
       "package": "com.maxunlimited101.saheartmobile"
     },
