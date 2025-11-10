@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { ui_tr, sign_tr } from '../utils/translations';
+import { ui_tr, } from '../utils/translations';
+import HoroscopePicker from './HoroscopePicker';
 
-const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
+const HoroscopeForm = ({ setSign, setLang, sign, lang, onChangeDefault }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{ui_tr[lang]["label_select_lang"]}</Text>
@@ -17,26 +18,15 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
         <Picker.Item label="Русский" value="rus" />
       </Picker>
 
-      <Text style={styles.label}>{ui_tr[lang]["label_select_sign"]}</Text>
-      <Picker
-        selectedValue={sign}
-        style={Platform.select({ android: styles.pickerMobile, ios: styles.pickerMobile, default: styles.picker })}
-        onValueChange={(itemValue) => { setSign(itemValue); }}
-      >
-        <Picker.Item label={'----'} value="" />
-        <Picker.Item label={sign_tr[lang]["aries"]} value={"aries"} />
-        <Picker.Item label={sign_tr[lang]["taurus"]} value={"taurus"} />
-        <Picker.Item label={sign_tr[lang]["gemini"]} value={"gemini"} />
-        <Picker.Item label={sign_tr[lang]["cancer"]} value={"cancer"} />
-        <Picker.Item label={sign_tr[lang]["leo"]} value={"leo"} />
-        <Picker.Item label={sign_tr[lang]["virgo"]} value={"virgo"} />
-        <Picker.Item label={sign_tr[lang]["libra"]} value={"libra"} />
-        <Picker.Item label={sign_tr[lang]["scorpio"]} value={"scorpio"} />
-        <Picker.Item label={sign_tr[lang]["sagittarius"]} value={"sagittarius"} />
-        <Picker.Item label={sign_tr[lang]["capricorn"]} value={"capricorn"} />
-        <Picker.Item label={sign_tr[lang]["aquarius"]} value={"aquarius"} />
-        <Picker.Item label={sign_tr[lang]["pisces"]} value={"pisces"} />
-      </Picker>
+      <HoroscopePicker sign={sign} setSign={setSign} lang={lang} styles={styles} />
+      
+      {onChangeDefault && (
+        <TouchableOpacity style={styles.changeDefaultButton} onPress={onChangeDefault}>
+          <Text style={styles.changeDefaultButtonText}>
+            {ui_tr[lang]["btn_change_default_sign"] || "Change Default Sign"}
+          </Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -44,6 +34,7 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang }) => {
 const styles = StyleSheet.create({
   container: {
     margin: 15,
+    width: '80%',
   },
   label: {
     fontSize: 18,
@@ -65,7 +56,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     color: '#000000',
     marginBottom: 20,
-  }
+  },
+  changeDefaultButton: {
+    backgroundColor: '#a83297',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 15,
+  },
+  changeDefaultButtonText: {
+    color: '#ffffff',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '600',
+  },
 });
 
 export default HoroscopeForm;

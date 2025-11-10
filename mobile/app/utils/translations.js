@@ -48,30 +48,44 @@ export const sign_tr = {
 
 export const ui_tr = {
   eng: {
-    btn_fetch_ai: "Get AI predicted horoscope",
+    btn_fetch_ai: "Get AI horoscope",
     prediction: "Prediction",
     error_fetching:
       "Failed to fetch horoscope (error fetching). You should try updating this app!",
     btn_fetch: "Get horoscope",
     label_select_lang: "Select your preferred language:",
-    label_select_sign: "Select your sign:",
+    label_select_sign: "Select the sign:",
+    welcome_select_sign: "Welcome! Please select your zodiac sign",
+    btn_confirm: "Confirm",
+    btn_change_default_sign: "Change default sign",
+    btn_cancel: "Cancel",
   },
   ukr: {
-    btn_fetch_ai: "Отримати передбачення від ШІ",
+    btn_fetch_ai: "Передбачення від ШІ",
     prediction: "Передбачення",
     error_fetching:
       "Не вдалося отримати гороскоп (помилка отримання). Спробуйте оновити цю програму!",
     btn_fetch: "Отримати гороскоп",
     label_select_lang: "Виберіть мову:",
-    label_select_sign: "Виберіть свій знак зодіаку:",
+    label_select_sign: "Виберіть знак зодіаку:",
+    welcome_select_sign: "Ласкаво просимо! Будь ласка, виберіть свій знак зодіаку",
+    btn_confirm: "Підтвердити",
+    btn_change_default_sign: "Змінити знак зодіаку за замовчуванням",
+    btn_cancel: "Скасувати",
   },
   rus: {
-    btn_fetch_ai: "Получить предсказание от ИИ",
+    btn_fetch_ai: "Предсказание от ИИ",
     prediction: "Предсказание",
     error_fetching:
       "Не удалось получить гороскоп (ошибка получения). Вам следует попробовать обновить это приложение!",
     btn_fetch: "Получить предсказание",
     label_select_lang: "Выберите язык:",
-    label_select_sign: "Выберите свой знак зодиака:",
+    label_select_sign: "Выберите знак зодиака:",
+    welcome_select_sign: "Добро пожаловать! Пожалуйста, выберите свой знак зодиака",
+    btn_confirm: "Подтвердить",
+    btn_change_default_sign: "Изменить знак зодиака по умолчанию",
+    btn_cancel: "Отмена",
   },
 };
+
+export default sign_tr;

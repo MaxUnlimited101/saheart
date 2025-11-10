@@ -93,7 +93,7 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
   if (loading) {
     return (
       <View style={styles.container} >
-        <ActivityIndicator size={"large"} color={"white"}/>
+        <ActivityIndicator size={"large"} color={"white"} />
       </View>
     );
   }
@@ -101,11 +101,11 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
   if (error) {
     return (
       <View style={styles.container}>
-        <View style={styles.verticalStack}>
-          <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonWrapper}>
             <Button title={`${ui_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
           </View>
-          <View style={styles.container}>
+          <View style={styles.buttonWrapper}>
             <Button title={`${ui_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
           </View>
         </View>
@@ -116,14 +116,15 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
 
   return (
     <View style={styles.container}>
-      <View style={styles.verticalStack}>
-        <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonWrapper}>
           <Button title={`${ui_tr[lang]["btn_fetch"]}`} onPress={fetchHoroscope} />
         </View>
-        <View style={styles.container}>
+        <View style={styles.buttonWrapper}>
           <Button title={`${ui_tr[lang]["btn_fetch_ai"]}`} onPress={fetchAiHoroscope} />
         </View>
       </View>
+
       {horoscope ? (
         <View style={styles.container}>
           <Text style={styles.header}>{`${ui_tr[lang]["prediction"]}: `}</Text>
@@ -135,9 +136,19 @@ const HoroscopeDisplay = ({ sign, lang, setBackgroundImageUrl, translations }) =
 };
 
 const styles = StyleSheet.create({
-  verticalStack: {
+  buttonContainer: {
     padding: 10,
-    flexDirection: 'column',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
+    width: '100%',
+  },
+  buttonWrapper: {
+    minWidth: 150,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
   },
   container: {
     padding: 10,
