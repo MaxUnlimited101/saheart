@@ -14,7 +14,11 @@ import HoroscopeDisplay, { serverUrl } from "./HoroscopeDisplay";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HoroscopePicker from "./HoroscopePicker";
-import { ui_tr } from "../utils/translations";
+import sign_tr, { ui_tr } from "../utils/translations";
+import {
+	registerForPushNotifications,
+	scheduleDailyHoroscopeNotification,
+} from "../utils/notifications";
 
 const App = () => {
 	const [selectedSign, setSelectedSign] = useState("");
@@ -46,8 +50,17 @@ const App = () => {
 				setModalVisible(true);
 			}
 		}
+		async function setupNotifications() {
+			const hasPermission = await registerForPushNotifications();
+			if (hasPermission && defaultSign && selectedLang) {
+				console.log("Scheduling notification...");
+				await scheduleDailyHoroscopeNotification(selectedLang, sign_tr[selectedLang][defaultSign], 9, 0); // 9:00 AM
+			}
+		}
+
 		loadDefaultSign();
-	}, []);
+		setupNotifications();
+	}, [defaultSign, selectedLang]);
 
 	if (loading) {
 		return (
@@ -101,7 +114,9 @@ const App = () => {
 									onPress={handleSaveDefaultSign}
 									disabled={!selectedSign}
 								>
-									<Text style={stylesForModal.confirmButtonText}>
+									<Text
+										style={stylesForModal.confirmButtonText}
+									>
 										{ui_tr[selectedLang].btn_confirm}
 									</Text>
 								</TouchableOpacity>
@@ -110,8 +125,13 @@ const App = () => {
 										style={stylesForModal.cancelButton}
 										onPress={() => setModalVisible(false)}
 									>
-										<Text style={stylesForModal.cancelButtonText}>
-											{ui_tr[selectedLang].btn_cancel || 'Cancel'}
+										<Text
+											style={
+												stylesForModal.cancelButtonText
+											}
+										>
+											{ui_tr[selectedLang].btn_cancel ||
+												"Cancel"}
 										</Text>
 									</TouchableOpacity>
 								)}
