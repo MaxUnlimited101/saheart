@@ -36,6 +36,13 @@ const App = () => {
 		}
 	};
 
+	const handleSaveDefaultLang = async (lang) => {
+		if (lang) {
+			await AsyncStorage.setItem("defaultLang", lang);
+			setSelectedLang(lang);
+		}
+	}
+
 	useEffect(() => {
 		async function loadDefaultSign() {
 			// Check if exists
@@ -50,6 +57,19 @@ const App = () => {
 				setModalVisible(true);
 			}
 		}
+
+		async function loadDefaultLang() {
+			// Check if exists
+			const savedLang = await AsyncStorage.getItem("defaultLang");
+			if (savedLang !== null) {
+				// Key exists
+				setSelectedLang(savedLang);
+			} else {
+				// Key does not exist - set default language
+				setSelectedLang("eng");
+			}
+		}
+
 		async function setupNotifications() {
 			const hasPermission = await registerForPushNotifications();
 			if (hasPermission && defaultSign && selectedLang) {
@@ -59,6 +79,7 @@ const App = () => {
 		}
 
 		loadDefaultSign();
+		loadDefaultLang();
 		setupNotifications();
 	}, [defaultSign, selectedLang]);
 
@@ -142,7 +163,7 @@ const App = () => {
 						<HoroscopeForm
 							sign={selectedSign}
 							lang={selectedLang}
-							setLang={setSelectedLang}
+							setLang={handleSaveDefaultLang}
 							setSign={setSelectedSign}
 							onChangeDefault={() => setModalVisible(true)}
 						/>

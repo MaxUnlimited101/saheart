@@ -12,18 +12,9 @@ const HoroscopePicker = ({ sign, setSign, lang, styles }) => {
         onValueChange={(itemValue) => { setSign(itemValue); }}
       >
         <Picker.Item label={'----'} value="" />
-        <Picker.Item label={sign_tr[lang]["aries"]} value={"aries"} />
-        <Picker.Item label={sign_tr[lang]["taurus"]} value={"taurus"} />
-        <Picker.Item label={sign_tr[lang]["gemini"]} value={"gemini"} />
-        <Picker.Item label={sign_tr[lang]["cancer"]} value={"cancer"} />
-        <Picker.Item label={sign_tr[lang]["leo"]} value={"leo"} />
-        <Picker.Item label={sign_tr[lang]["virgo"]} value={"virgo"} />
-        <Picker.Item label={sign_tr[lang]["libra"]} value={"libra"} />
-        <Picker.Item label={sign_tr[lang]["scorpio"]} value={"scorpio"} />
-        <Picker.Item label={sign_tr[lang]["sagittarius"]} value={"sagittarius"} />
-        <Picker.Item label={sign_tr[lang]["capricorn"]} value={"capricorn"} />
-        <Picker.Item label={sign_tr[lang]["aquarius"]} value={"aquarius"} />
-        <Picker.Item label={sign_tr[lang]["pisces"]} value={"pisces"} />
+        {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((signKey) => (
+          <Picker.Item key={signKey} label={sign_tr[lang][signKey]} value={signKey} />
+        ))}
       </Picker>
     </>
   );

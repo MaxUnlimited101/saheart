@@ -77,6 +77,7 @@ export async function scheduleDailyHoroscopeNotification(
 			hour: hour, // 9 AM
 			minute: minute, // 0 minutes
 			repeats: true, // Repeat daily
+			type: Notifications.SchedulableTriggerInputTypes.DAILY,
 		},
 	});
 }
