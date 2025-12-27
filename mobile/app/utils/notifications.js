@@ -1,6 +1,7 @@
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import { Platform } from "react-native";
+import { ui_tr } from "./translations";
 
 // Configure notification behavior
 Notifications.setNotificationHandler({
@@ -53,23 +54,11 @@ export async function scheduleDailyHoroscopeNotification(
 	// Cancel existing notifications first
 	await Notifications.cancelAllScheduledNotificationsAsync();
 
-	const titleTranslations = {
-		eng: "🌟 Your Horoscope is Ready!",
-		ukr: "🌟 Ваш гороскоп готовий!",
-		rus: "🌟 Ваш гороскоп готов!",
-	};
-
-	const bodyTranslations = {
-		eng: `Good morning! Check your ${zodiacSign} horoscope for today.`,
-		ukr: `Доброго ранку! Перевірте свій гороскоп на сьогодні для знаку ${zodiacSign}.`,
-		rus: `Доброе утро! Проверьте свой гороскоп на сегодня для знака ${zodiacSign}.`,
-	};
-
 	// Schedule daily notification
 	await Notifications.scheduleNotificationAsync({
 		content: {
-			title: titleTranslations[lang] || titleTranslations.eng,
-			body: bodyTranslations[lang] || bodyTranslations.eng,
+			title: ui_tr[lang]["notification_title"] || ui_tr.eng["notification_title"],
+			body: (ui_tr[lang]["notification_body_1"] || ui_tr.eng["notification_body_1"]) + zodiacSign + (ui_tr[lang]["notification_body_2"] || ui_tr.eng["notification_body_2"]),
 			data: { zodiacSign },
 			sound: true,
 		},

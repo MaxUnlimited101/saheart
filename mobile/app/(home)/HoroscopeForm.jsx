@@ -15,7 +15,9 @@ const HoroscopeForm = ({ setSign, setLang, sign, lang, onChangeDefault }) => {
         <Picker.Item label="----" value="" />
         <Picker.Item label="English" value="eng" />
         <Picker.Item label="Українська" value="ukr" />
+        <Picker.Item label="Polski" value="pol" />
         <Picker.Item label="Русский" value="rus" />
+        <Picker.Item label="Español" value="esp" />
       </Picker>
 
       <HoroscopePicker sign={sign} setSign={setSign} lang={lang} styles={styles} />
