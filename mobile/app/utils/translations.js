@@ -92,6 +92,10 @@ export const ui_tr = {
 		notification_title: "🌟 Your Horoscope is Ready!",
 		notification_body_1: "Good morning! Check your ",
 		notification_body_2: " horoscope for today.",
+		womens_day_title: "🌸 Happy International Women's Day! 🌸",
+		womens_day_message:
+			"Congratulations to all the wonderful women out there! May this day bring you joy, recognition, and celebration of your strength, achievements, and contributions.",
+		womens_day_button: "Thank You!",
 	},
 	ukr: {
 		btn_fetch_ai: "Передбачення від ШІ",
@@ -106,6 +110,10 @@ export const ui_tr = {
 		btn_confirm: "Підтвердити",
 		btn_change_default_sign: "Змінити знак зодіаку за замовчуванням",
 		btn_cancel: "Скасувати",
+		womens_day_title: "🌸 Щасливого Міжнародного жіночого дня! 🌸",
+		womens_day_message:
+			"Вітаємо всіх чудових жінок! Нехай цей день принесе вам радість, визнання та святкування вашої сили, досягнень та внеску.",
+		womens_day_button: "Дякую!",
 	},
 	rus: {
 		btn_fetch_ai: "Предсказание от ИИ",
@@ -120,6 +128,10 @@ export const ui_tr = {
 		btn_confirm: "Подтвердить",
 		btn_change_default_sign: "Изменить знак зодиака по умолчанию",
 		btn_cancel: "Отмена",
+		womens_day_title: "🌸 С Международным женским днём! 🌸",
+		womens_day_message:
+			"Поздравляем всех замечательных женщин! Пусть этот день принесёт вам радость, признание и празднование вашей силы, достижений и вклада.",
+		womens_day_button: "Спасибо!",
 	},
 	esp: {
 		btn_fetch_ai: "Obtener horóscopo de IA",
@@ -134,6 +146,10 @@ export const ui_tr = {
 		btn_confirm: "Confirmar",
 		btn_change_default_sign: "Cambiar signo predeterminado",
 		btn_cancel: "Cancelar",
+		womens_day_title: "🌸 ¡Feliz Día Internacional de la Mujer! 🌸",
+		womens_day_message:
+			"¡Felicitaciones a todas las maravillosas mujeres! Que este día les traiga alegría, reconocimiento y celebración de su fuerza, logros y contribuciones.",
+		womens_day_button: "¡Gracias!",
 	},
 	pol: {
 		btn_fetch_ai: "Pobierz horoskop AI",
@@ -147,6 +163,10 @@ export const ui_tr = {
 		btn_confirm: "Potwierdź",
 		btn_change_default_sign: "Zmień domyślny znak",
 		btn_cancel: "Anuluj",
+		womens_day_title: "🌸 Szczęśliwego Międzynarodowego Dnia Kobiet! 🌸",
+		womens_day_message:
+			"Gratulacje dla wszystkich wspaniałych kobiet! Niech ten dzień przyniesie wam radość, uznanie i celebrację waszej siły, osiągnięć i wkładu.",
+		womens_day_button: "Dziękuję!",
 	},
 };
 

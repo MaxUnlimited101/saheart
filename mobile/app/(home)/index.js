@@ -27,6 +27,7 @@ const App = () => {
 	const [loading] = useState(false);
 	const [defaultSign, setDefaultSign] = useState(null);
 	const [modalVisible, setModalVisible] = useState(false);
+	const [womensDayModalVisible, setWomensDayModalVisible] = useState(false);
 
 	const handleSaveDefaultSign = async () => {
 		if (selectedSign) {
@@ -82,6 +83,14 @@ const App = () => {
 		loadDefaultLang();
 		setupNotifications();
 	}, [defaultSign, selectedLang]);
+
+	useEffect(() => {
+		// Check if today is March 8th (International Women's Day)
+		const today = new Date();
+		if (today.getMonth() === 2 && today.getDate() === 8) {
+			setWomensDayModalVisible(true);
+		}
+	}, []);
 
 	if (loading) {
 		return (
@@ -156,6 +165,31 @@ const App = () => {
 										</Text>
 									</TouchableOpacity>
 								)}
+							</View>
+						</View>
+					</Modal>
+					<Modal
+						animationType="fade"
+						transparent={true}
+						visible={womensDayModalVisible}
+						onRequestClose={() => setWomensDayModalVisible(false)}
+					>
+						<View style={stylesForModal.modalOverlay}>
+							<View style={stylesForModal.modalContent}>
+								<Text style={stylesForModal.title}>
+									{ui_tr[selectedLang].womens_day_title}
+								</Text>
+								<Text style={stylesForModal.message}>
+									{ui_tr[selectedLang].womens_day_message}
+								</Text>
+								<TouchableOpacity
+									style={stylesForModal.confirmButton}
+									onPress={() => setWomensDayModalVisible(false)}
+								>
+									<Text style={stylesForModal.confirmButtonText}>
+										{ui_tr[selectedLang].womens_day_button}
+									</Text>
+								</TouchableOpacity>
 							</View>
 						</View>
 					</Modal>
@@ -258,6 +292,13 @@ const stylesForModal = StyleSheet.create({
 		marginBottom: 20,
 		textAlign: "center",
 		color: "#ffffff",
+	},
+	message: {
+		fontSize: 16,
+		lineHeight: 24,
+		marginBottom: 20,
+		textAlign: "center",
+		color: "#e0e0e0",
 	},
 	confirmButton: {
 		backgroundColor: "#a83297",
