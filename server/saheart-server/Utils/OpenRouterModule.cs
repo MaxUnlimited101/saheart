@@ -25,7 +25,7 @@ public static class OpenRouterRequest
             // Prepare Request Body (JSON)
             var requestData = new
             {
-                model = "google/gemma-3-4b-it:free", 
+                model = "openai/gpt-oss-20b:free", 
                 messages = new[]
                 {
                     new
